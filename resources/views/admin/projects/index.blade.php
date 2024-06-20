@@ -4,6 +4,12 @@
     <div class="container py-5">
         <h1 class="text-center">Project Table</h1>
 
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <table class="table">
             <thead>
                 <tr>
@@ -19,7 +25,15 @@
                         <th scope="row"> {{ $project->title }} </th>
                         <td> {{ $project->description }} </td>
                         <td> {{ $project->slug }} </td>
-                        <td> <a class='btn btn-info' href="{{ route('admin.projects.show',['project'=>$project->slug])}}">Dettagli</a>
+                        <td> <a class='btn btn-info'
+                                href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Dettagli</a>
+
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Elimina</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
