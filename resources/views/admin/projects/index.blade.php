@@ -26,13 +26,15 @@
                         <td> {{ $project->description }} </td>
                         <td> {{ $project->slug }} </td>
                         <td> <a class='btn btn-info'
-                                href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Dettagli</a>
+                                href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Details</a>
+                             <a class='btn btn-warning'
+                                href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Modify</a>
 
                             <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Elimina</button>
+                                <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>
