@@ -4,6 +4,19 @@
     <div class="container py-5">
         <h1 class="text-center">Project Table</h1>
 
+        <div>
+            <form action="">
+                <label for="perPage">elementi in pagina</label>
+                <select name="perPage" id="perPage">
+                  <option value="5" @selected($projectsArray->perPage() == 5)>5</option>
+                  <option value="10" @selected($projectsArray->perPage() ==10)>10</option>
+                  <option value="15" @selected($projectsArray->perPage() == 15)>15</option>
+                </select>
+
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
@@ -41,5 +54,9 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div>
+        {{ $projectsArray->links() }}
     </div>
 @endsection
