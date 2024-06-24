@@ -37,16 +37,47 @@
                         <td>
                             <div class="d-flex align-item-center">
                                 <a class='btn btn-info'
-                                    href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"><i class="fa-solid fa-circle-info" title="Details"></i></a>
+                                    href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"><i
+                                        class="fa-solid fa-circle-info" title="Details"></i></a>
                                 <a class='btn btn-warning'
-                                    href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}"><i class="fa-solid fa-pen" title="Modify"></i></a>
+                                    href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}"><i
+                                        class="fa-solid fa-pen" title="Modify"></i></a>
 
-                                <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash" title="Delete"></i></button>
-                                </form>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target='[data-form="{{ $project->slug }}"]'>
+                                    <i class="fa-solid fa-trash" title="Delete"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-form="{{ $project->slug }}"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure to delete {{ $project->title }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <form
+                                                    action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" id="delete"
+                                                        type="submit">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
