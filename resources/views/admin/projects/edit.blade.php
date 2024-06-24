@@ -5,7 +5,7 @@
         <h1 class="text-center py-5">Edit Project</h1>
 
         @if ($errors->any())
-            <div> class="alert alert-danger"
+            <div class="alert alert-danger"> 
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -19,11 +19,11 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ $project->title }}">
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $project->title) }}">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ $project->description }}</textarea>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $project->description) }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
