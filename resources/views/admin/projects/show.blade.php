@@ -3,11 +3,7 @@
 @section('content')
     <h1 class="text-center py-5">Details Page</h1>
 
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
+    @include('partials.session_message')
     
     <div class="container card">
         <h2>Title: {{ $project->title }}</h2>
