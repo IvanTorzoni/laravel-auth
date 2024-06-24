@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $newProject = $request->all();
         $project->slug = Str::slug($request->title);
         $project->update($newProject);
-        return redirect()->route('admin.projects.index', compact('project'));
+        return redirect()->route('admin.projects.show', compact('project'))->with('message', 'Il progetto ' . $project->title . ' è stato modificato correttamente');
     }
 
     /**
